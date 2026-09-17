@@ -4,7 +4,7 @@ const createShortUrl = async (req, res) => {
   try {
     const { originalUrl } = req.body;
 
-    const result = await urlService.createShortUrl(originalUrl);
+  const result = await urlService.createShortUrl(originalUrl, req);
 
     res.status(201).json(result);
   } catch (error) {

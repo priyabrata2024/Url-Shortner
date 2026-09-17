@@ -1,7 +1,7 @@
 const urlRepository = require("../repo/urlRepo");
 const generateShortCode = require("../util/short-code");
 
-const createShortUrl = async (originalUrl) => {
+const createShortUrl = async (originalUrl, req) =>  {
   if (!originalUrl) {
     throw new Error("Original URL is required");
   }
@@ -28,7 +28,7 @@ const createShortUrl = async (originalUrl) => {
     id: savedUrl.id,
     shortCode: savedUrl.short_code,
     originalUrl: savedUrl.original_url,
-    shortUrl: `http://localhost:3000/${savedUrl.short_code}`,
+    shortUrl: `${req.protocol}://${req.get("host")}/${savedUrl.short_code}`,
   };
 };
 
